@@ -44,3 +44,10 @@ window.addEventListener("scroll", function () {
   }
 
 });
+document.addEventListener("DOMContentLoaded", function () {
+  window.scrollTo(0, 0); // Scroll to top on page load
+
+  setTimeout(() => {
+    document.body.classList.add("loaded"); // Hide preloader
+  }, 1000); // Adjust delay if needed
+});

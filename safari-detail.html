@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safari Details</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+
+<section class="package-detail">
+    <div class="container">
+        <p class="section-subtitle" style="margin-top: 2rem;">Safari Details</p>
+
+        <h2 class="h2 section-title" id="safari-title">Loading...</h2>
+        
+        <div class="package-card">
+            <figure class="card-banner">
+                <img id="safari-image" alt="Safari Image" loading="lazy">
+            </figure>
+            <div class="card-content">
+                <p class="card-text" id="safari-description">Fetching details...</p>
+
+                <ul class="card-meta-list">
+                    <li class="card-meta-item">
+                        <div class="meta-box">
+                            <ion-icon name="time"></ion-icon>
+                            <p class="text" id="safari-duration"></p>
+                        </div>
+                    </li>
+                    <li class="card-meta-item">
+                        <div class="meta-box">
+                            <ion-icon name="people"></ion-icon>
+                            <p class="text" id="safari-max-people"></p>
+                        </div>
+                    </li>
+                    <li class="card-meta-item">
+                        <div class="meta-box">
+                            <ion-icon name="location"></ion-icon>
+                            <p class="text" id="safari-location"></p>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="card-price">
+                    <div class="wrapper">
+                        <p class="reviews" id="safari-reviews"></p>
+                        <div class="card-rating" id="safari-rating"></div>
+                    </div>
+                    <p class="price">
+                        <span id="safari-price"></span> <span>/ per person</span>
+                    </p>
+                    <button class="btn btn-secondary">Book Now</button>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+    const bookNowButton = document.querySelector(".btn-secondary");
+
+    if (bookNowButton) {
+        bookNowButton.addEventListener("click", function () {
+            window.location.href = "index.html?scroll=contact"; // Redirect to index.html with a parameter
+        });
+    }
+});
+
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="itinerary">
+            <h3>Itinerary</h3>
+            <ul id="itinerary-list"></ul>
+        </div>
+
+        <!-- Back to Home Button -->
+        <a href="index.html" class="btn btn-primary" style="margin-top: 2rem; display: inline-block;">Back to Home</a>
+
+    </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", async function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const slug = urlParams.get("slug");
+
+    if (!slug) {
+        document.querySelector(".package-detail").innerHTML = "<p>Safari not found.</p>";
+        return;
+    }
+
+    try {
+        const response = await fetch(`https://horchenafrica.pythonanywhere.com/safaris/${slug}/`);
+        if (!response.ok) throw new Error("Safari not found");
+        const safari = await response.json();
+
+        document.getElementById("safari-title").textContent = safari.title;
+        document.getElementById("safari-image").src = safari.image || "";
+        document.getElementById("safari-image").alt = safari.title;
+        document.getElementById("safari-description").textContent = safari.description;
+        document.getElementById("safari-duration").textContent = `Duration: ${safari.duration} days`;
+        document.getElementById("safari-max-people").textContent = `Max Pax: ${safari.max_people || "N/A"}`;
+        document.getElementById("safari-location").textContent = `Location: ${safari.location}`;
+        document.getElementById("safari-price").textContent = `$${safari.price}`;
+        document.getElementById("safari-reviews").textContent = `(${safari.reviews_count || 0} reviews)`;
+        document.getElementById("safari-rating").innerHTML = "⭐".repeat(Math.round(safari.rating || 0));
+
+        // Display itinerary from safari.itinerary
+        const itineraryList = document.getElementById("itinerary-list");
+        itineraryList.innerHTML = ""; // Clear previous data
+        if (safari.itinerary && safari.itinerary.length > 0) {
+            safari.itinerary.forEach(day => {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `<strong>Day ${day.day_number}:</strong> ${day.description}`;
+                itineraryList.appendChild(listItem);
+            });
+        } else {
+            itineraryList.innerHTML = "<p>No itinerary available.</p>";
+        }
+
+    } catch (error) {
+        console.error("Error fetching safari details:", error);
+        document.querySelector(".package-detail").innerHTML = "<p>Failed to load safari details.</p>";
+    }
+});
+</script>
+
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.meta-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #3498db;
+}
+</style>
+
+</body>
+</html>

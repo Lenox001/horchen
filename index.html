@@ -28,6 +28,10 @@
 </head>
 
 <body id="top">
+  <div id="preloader">
+    <div class="spinner"></div>
+</div>
+
 
   <!-- 
     - #HEADER
@@ -55,10 +59,7 @@
 
       </a>
 
-      <div class="header-btn-group">
-        <button class="search-btn" aria-label="Search">
-          <ion-icon name="search"></ion-icon>
-        </button>
+    
 
         <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
           <ion-icon name="menu-outline"></ion-icon>
@@ -72,36 +73,40 @@
     <div class="container">
 
       <ul class="social-list">
-
-        <li>
-          
-          <a href="#" class="social-link">
+    <li>
+        <a class="social-link" onclick="openSocial(event, 'https://www.facebook.com')">
             <ion-icon name="logo-facebook"></ion-icon>
-          </a>
-        </li>
-
-        <li>
-          <a href="#" class="social-link">
+        </a>
+    </li>
+    <li>
+        <a class="social-link" onclick="openSocial(event, 'https://twitter.com')">
             <ion-icon name="logo-twitter"></ion-icon>
-          </a>
-        </li>
-
-        <li>
-          <a href="#" class="social-link">
+        </a>
+    </li>
+    <li>
+        <a class="social-link" onclick="openSocial(event, 'https://www.youtube.com')">
             <ion-icon name="logo-youtube"></ion-icon>
-          </a>
-        </li>
+        </a>
+    </li>
+</ul>
 
-      </ul>
+<script>
+    function openSocial(event, url) {
+        event.preventDefault(); // Prevents default anchor behavior
+        window.open(url, '_blank');
+    }
+</script>
+
 
       <nav class="navbar" data-navbar>
 
         <div class="navbar-top">
 
           <!-- Existing Logo (Unchanged) -->
-          <a href="#" class="logo">
-            <img src="./assets/images/Logo-Photoroom.png" alt="Horchen logo">
-          </a>
+          <a href="javascript:void(0);" class="logo" onclick="window.location='index.html';">
+    <img src="./assets/images/Logo-Photoroom.png" alt="Horchen logo">
+</a>
+
 
           <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
             <ion-icon name="close-outline"></ion-icon>
@@ -109,37 +114,77 @@
 
         </div>
 
-        <ul class="navbar-list">
+       <ul class="navbar-list">
 
-          <li>
-            <a href="#home" class="navbar-link" data-nav-link>home</a>
-          </li>
+  <li>
+    <a href="javascript:void(0);" class="navbar-link" data-target="home">home</a>
+  </li>
 
-          <li>
-            <a href="#" class="navbar-link" data-nav-link>about us</a>
-          </li>
+  <li>
+    <a href="javascript:void(0);" class="navbar-link" data-target="about">about us</a>
+  </li>
 
-          <li>
-            <a href="#destination" class="navbar-link" data-nav-link>destination</a>
-          </li>
+  <li>
+    <a href="javascript:void(0);" class="navbar-link" data-target="destination">destination</a>
+  </li>
 
-          <li>
-            <a href="#package" class="navbar-link" data-nav-link>packages</a>
-          </li>
+  <li>
+    <a href="javascript:void(0);" class="navbar-link" data-target="package">packages</a>
+  </li>
 
-          <li>
-            <a href="#gallery" class="navbar-link" data-nav-link>gallery</a>
-          </li>
+  <li>
+    <a href="javascript:void(0);" class="navbar-link" data-target="gallery">gallery</a>
+  </li>
 
-          <li>
-            <a href="#contact" class="navbar-link" data-nav-link>contact us</a>
-          </li>
+  <li>
+    <a href="javascript:void(0);" class="navbar-link" data-target="contact">contact us</a>
+  </li>
 
-        </ul>
+</ul>
+<script>
+  document.querySelectorAll('.navbar-link').forEach(link => {
+  link.addEventListener('click', function () {
+    const targetId = this.getAttribute('data-target');
+    const targetSection = document.getElementById(targetId);
+    if (targetSection) {
+      window.scrollTo({
+        top: targetSection.offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+</script>
 
       </nav>
 
-      <button class="btn btn-primary">Book Now</button>
+     <a class="btn btn-primary" id="book-now">Book Now</a>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const bookNowButton = document.getElementById("book-now");
+
+    bookNowButton.addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent default anchor behavior
+        
+        const contactSection = document.getElementById("contact");
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: "smooth" });
+            history.pushState(null, null, " "); // Removes # from URL
+        }
+    });
+});
+</script>
+
+
+<script>
+document.getElementById("book-now").addEventListener("click", function() {
+    window.location.hash = "contact";
+    document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+});
+</script>
+
 
     </div>
   </div>
@@ -157,21 +202,37 @@
         - #HERO
       -->
 
-      <section class="hero" id="home">
+    <section class="hero" id="home">
   <div class="container">
-    <h2 class="h1 hero-title">Explore the World with Us</h2>
-    
-    <p class="hero-text">
-      Discover breathtaking destinations, immerse yourself in diverse cultures, and create unforgettable memories. 
-      Your next adventure starts here!
-    </p>
-
-    <div class="btn-group">
-      <button class="btn btn-primary">Discover More</button>
-      <button class="btn btn-secondary">Book Your Trip</button>
-    </div>
+    <h2 class="h1 hero-title" id="hero-title">Loading...</h2>
+    <p class="hero-text" id="hero-text">Fetching content...</p>
   </div>
 </section>
+
+<script>
+  async function fetchHomepageContent() {
+      try {
+          const response = await fetch("https://horchenafrica.pythonanywhere.com/homepage/");
+          const data = await response.json();
+
+          if (data.length > 0) { 
+              const homepage = data[0]; // Get the first entry
+
+              document.getElementById("hero-title").textContent = homepage.hero_title;
+              document.getElementById("hero-text").textContent = homepage.hero_text;
+          } else {
+              document.getElementById("hero-title").textContent = "No Data Available";
+              document.getElementById("hero-text").textContent = "";
+          }
+      } catch (error) {
+          console.error("Error fetching homepage content:", error);
+          document.getElementById("hero-title").textContent = "Error Loading Content";
+          document.getElementById("hero-text").textContent = "";
+      }
+  }
+
+  fetchHomepageContent();
+</script>
 
 
 
@@ -179,44 +240,18 @@
 
       <!-- 
         - #TOUR SEARCH
+        
       -->
+        <section id="about" class="about-section">
+  <div class="container">
+    <h2>About Us</h2>
+    <p>Welcome to Horchen! We are passionate about creating unforgettable travel experiences. Our team is dedicated to helping you explore the world with carefully curated destinations, personalized packages, and exceptional service.</p>
+    <p>Whether you're looking for an adventure, relaxation, or a cultural experience, we've got the perfect trip for you. Let’s make your travel dreams a reality!</p>
+  </div>
+</section>
 
-      <section class="tour-search">
-        <div class="container">
 
-          <form action="" class="tour-search-form">
-
-            <div class="input-wrapper">
-              <label for="destination" class="input-label">Search Destination*</label>
-
-              <input type="text" name="destination" id="destination" required placeholder="Enter Destination"
-                class="input-field">
-            </div>
-
-            <div class="input-wrapper">
-              <label for="people" class="input-label">Pax Number*</label>
-
-              <input type="number" name="people" id="people" required placeholder="No.of People" class="input-field">
-            </div>
-
-            <div class="input-wrapper">
-              <label for="checkin" class="input-label">Checkin Date**</label>
-
-              <input type="date" name="checkin" id="checkin" required class="input-field">
-            </div>
-
-            <div class="input-wrapper">
-              <label for="checkout" class="input-label">Checkout Date*</label>
-
-              <input type="date" name="checkout" id="checkout" required class="input-field">
-            </div>
-
-            <button type="submit" class="btn btn-secondary">Inquire now</button>
-
-          </form>
-
-        </div>
-      </section>
+      
 
 
 
@@ -237,107 +272,66 @@
       Explore Kenya’s stunning landscapes, wildlife, and cultural heritage with these must-visit destinations.
     </p>
 
-    <ul class="popular-list">
-
-      <li>
-        <div class="popular-card">
-          <figure class="card-img">
-            <img src="./assets/images/popular-1.jpg" alt="Masai Mara National Reserve" loading="lazy">
-          </figure>
-
-          <div class="card-content">
-            <div class="card-rating">
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-            </div>
-
-            <p class="card-subtitle">
-              <a href="#">Narok County</a>
-            </p>
-
-            <h3 class="h3 card-title">
-              <a href="#">Masai Mara </a>
-            </h3>
-
-            <p class="card-text">
-              One of Africa’s top safari destinations, famous for the Great Migration and incredible wildlife.
-            </p>
-          </div>
-        </div>
-      </li>
-
-      <li>
-        <div class="popular-card">
-          <figure class="card-img">
-            <img src="./assets/images/popular-2.jpg" alt="Diani Beach" loading="lazy">
-          </figure>
-
-          <div class="card-content">
-            <div class="card-rating">
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-            </div>
-
-            <p class="card-subtitle">
-              <a href="#">Kwale County</a>
-            </p>
-
-            <h3 class="h3 card-title">
-              <a href="#">Diani Beach</a>
-            </h3>
-
-            <p class="card-text">
-              A tropical paradise with white sandy beaches, crystal-clear waters, and thrilling water sports.
-            </p>
-          </div>
-        </div>
-      </li>
-
-      <li>
-        <div class="popular-card">
-          <figure class="card-img">
-            <img src="./assets/images/popular-3.jpg" alt="Mount Kenya" loading="lazy">
-          </figure>
-
-          <div class="card-content">
-            <div class="card-rating">
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-            </div>
-
-            <p class="card-subtitle">
-              <a href="#">Kirinyaga County</a>
-            </p>
-
-            <h3 class="h3 card-title">
-              <a href="#">Mount Kenya</a>
-            </h3>
-
-            <p class="card-text">
-              Kenya’s highest peak, offering breathtaking scenery and a challenge for mountain climbers.
-            </p>
-          </div>
-        </div>
-      </li>
-
-    </ul>
-
-    <button class="btn btn-primary">More Destinations</button>
+    <ul class="popular-list" id="destination-list"></ul>
 
   </div>
 </section>
 
+<script>
+ document.addEventListener("DOMContentLoaded", function() {
+  fetch("https://horchenafrica.pythonanywhere.com/destinations")
+    .then(response => response.json())
+    .then(data => {
+      const destinationList = document.getElementById("destination-list");
+      destinationList.innerHTML = "";
+
+      data.forEach(destination => {
+        const listItem = document.createElement("li");
+        listItem.innerHTML = `
+          <div class="popular-card">
+            <figure class="card-img">
+              <img src="${destination.image}" alt="${destination.title}" loading="lazy">
+            </figure>
+            <div class="card-content">
+              <div class="card-rating">
+                ${"★".repeat(destination.rating)}${"☆".repeat(5 - destination.rating)}
+              </div>
+              <p class="card-subtitle">
+                ${destination.country}
+              </p>
+              <h3 class="h3 card-title">
+                <a href="destination_details.html?slug=${destination.slug}">${destination.title}</a>
+              </h3>
+              <p class="card-text">
+                ${destination.description.length > 50 
+                  ? destination.description.substring(0, 50) + "..." 
+                  : destination.description}
+              </p>
+            </div>
+          </div>
+        `;
+        destinationList.appendChild(listItem);
+      });
+    })
+    .catch(error => console.error("Error fetching destinations:", error));
+});
+
+</script>
 
 
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("scroll") === "contact") {
+        const contactSection = document.getElementById("contact");
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: "smooth" });
+        }
+    }
+});
+
+</script>
 
 
 
@@ -346,248 +340,93 @@
       -->
 
      <section class="package" id="package">
-        <div class="container">
+  <div class="container">
+    <p class="section-subtitle">Popular Packages</p>
+    <h2 class="h2 section-title">Checkout Our Packages</h2>
+    <p class="section-text">
+      Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum. Vestibulum cumque laudantium.
+      Sit ornare mollitia tenetur, aptent.
+    </p>
 
-          <p class="section-subtitle">Popular Packages</p>
+    <ul class="package-list">
+      <!-- Safari packages will be inserted here dynamically -->
+    </ul>
 
-          <h2 class="h2 section-title">Checkout Our Packages</h2>
+    
+  </div>
+</section>
+<script>
+  document.addEventListener("DOMContentLoaded", async function () {
+    const packageList = document.querySelector(".package-list");
 
-          <p class="section-text">
-            Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum. Vestibulum cumque laudantium.
-            Sit ornare
-            mollitia tenetur, aptent.
-          </p>
+    try {
+        const response = await fetch("https://horchenafrica.pythonanywhere.com/safaris");
+        const safaris = await response.json();
 
-          <ul class="package-list">
-
+        packageList.innerHTML = safaris.map(safari => `
             <li>
-              <div class="package-card">
-
-                <figure class="card-banner">
-                  <img src="./assets/images/packege-1.jpg" alt="Experience The Great Holiday On Diani Beach" loading="lazy">
-                </figure>
-
-                <div class="card-content">
-
-                  <h3 class="h3 card-title">Experience The Great Holiday On Diani Beach</h3>
-
-                  <p class="card-text">
-                    Laoreet, voluptatum nihil dolor esse quaerat mattis explicabo maiores, est aliquet porttitor! Eaque,
-                    cras, aspernatur.
-                  </p>
-
-                  <ul class="card-meta-list">
-
-                    <li class="card-meta-item">
-                      <div class="meta-box">
-                        <ion-icon name="time"></ion-icon>
-
-                        <p class="text">7D/6N</p>
-                      </div>
-                    </li>
-
-                    <li class="card-meta-item">
-                      <div class="meta-box">
-                        <ion-icon name="people"></ion-icon>
-
-                        <p class="text">pax: 10</p>
-                      </div>
-                    </li>
-
-                    <li class="card-meta-item">
-                      <div class="meta-box">
-                        <ion-icon name="location"></ion-icon>
-
-                        <p class="text">Kenya</p>
-                      </div>
-                    </li>
-
-                  </ul>
-
-                </div>
-
-                <div class="card-price">
-
-                  <div class="wrapper">
-
-                    <p class="reviews">(25 reviews)</p>
-
-                    <div class="card-rating">
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
+                <div class="package-card">
+                    <figure class="card-banner">
+                        <img src="${safari.image || './assets/images/default.jpg'}" alt="${safari.title}" loading="lazy">
+                    </figure>
+                    <div class="card-content">
+                        <h3 class="h3 card-title">
+                            <a href="safari-detail.html?slug=${safari.slug}">${safari.title}</a>
+                        </h3>
+                        <p class="card-text">${safari.description}</p>
+                        <ul class="card-meta-list">
+                            <li class="card-meta-item">
+                                <div class="meta-box">
+                                    <ion-icon name="time"></ion-icon>
+                                    <p class="text">${safari.duration}</p>
+                                </div>
+                            </li>
+                            <li class="card-meta-item">
+                                <div class="meta-box">
+                                    <ion-icon name="people"></ion-icon>
+                                    <p class="text">pax: ${safari.max_people || "N/A"}</p>
+                                </div>
+                            </li>
+                            <li class="card-meta-item">
+                                <div class="meta-box">
+                                    <ion-icon name="location"></ion-icon>
+                                    <p class="text">${safari.location}</p>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-
-                  </div>
-
-                  <p class="price">
-                    $750
-                    <span>/ per person</span>
-                  </p>
-
-                  <button class="btn btn-secondary">Book Now</button>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="package-card">
-
-                <figure class="card-banner">
-                  <img src="./assets/images/packege-2.jpg" alt="Summer Holiday To The Mara River" loading="lazy">
-                </figure>
-
-                <div class="card-content">
-
-                  <h3 class="h3 card-title">Summer Holiday To The Mara River</h3>
-
-                  <p class="card-text">
-                    Laoreet, voluptatum nihil dolor esse quaerat mattis explicabo maiores, est aliquet porttitor! Eaque,
-                    cras, aspernatur.
-                  </p>
-
-                  <ul class="card-meta-list">
-
-                    <li class="card-meta-item">
-                      <div class="meta-box">
-                        <ion-icon name="time"></ion-icon>
-
-                        <p class="text">7D/6N</p>
-                      </div>
-                    </li>
-
-                    <li class="card-meta-item">
-                      <div class="meta-box">
-                        <ion-icon name="people"></ion-icon>
-
-                        <p class="text">pax: 10</p>
-                      </div>
-                    </li>
-
-                    <li class="card-meta-item">
-                      <div class="meta-box">
-                        <ion-icon name="location"></ion-icon>
-
-                        <p class="text">Kenya</p>
-                      </div>
-                    </li>
-
-                  </ul>
-
-                </div>
-
-                <div class="card-price">
-
-                  <div class="wrapper">
-
-                    <p class="reviews">(20 reviews)</p>
-
-                    <div class="card-rating">
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
+                    <div class="card-price">
+                        <div class="wrapper">
+                            <p class="reviews">(${safari.reviews_count || 0} reviews)</p>
+                            <div class="card-rating">
+                                ${"⭐".repeat(Math.round(safari.rating || 0))}
+                            </div>
+                        </div>
+                        <p class="price">$${safari.price} <span>/ per person</span></p>
+                        <button class="btn btn-secondary book-now" data-contact="contact">Book Now</button>
                     </div>
-
-                  </div>
-
-                  <p class="price">
-                    $520
-                    <span>/ per person</span>
-                  </p>
-
-                  <button class="btn btn-secondary">Book Now</button>
-
                 </div>
-
-              </div>
             </li>
+        `).join("");
 
-            <li>
-              <div class="package-card">
+        // Add smooth scrolling to all "Book Now" buttons
+        document.querySelectorAll(".book-now").forEach(button => {
+            button.addEventListener("click", function (event) {
+                const contactSection = document.getElementById("contact");
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: "smooth" });
+                }
+            });
+        });
 
-                <figure class="card-banner">
-                  <img src="./assets/images/packege-3.jpg" alt="Lamu Island's Weekend Vacation" loading="lazy">
-                </figure>
+    } catch (error) {
+        console.error("Error fetching safari packages:", error);
+        packageList.innerHTML = "<p>Failed to load safari packages. Please try again later.</p>";
+    }
+});
 
-                <div class="card-content">
+</script>
 
-                  <h3 class="h3 card-title">Lamu Island's Weekend Vacation</h3>
-
-                  <p class="card-text">
-                    Laoreet, voluptatum nihil dolor esse quaerat mattis explicabo maiores, est aliquet porttitor! Eaque,
-                    cras, aspernatur.
-                  </p>
-
-                  <ul class="card-meta-list">
-
-                    <li class="card-meta-item">
-                      <div class="meta-box">
-                        <ion-icon name="time"></ion-icon>
-
-                        <p class="text">7D/6N</p>
-                      </div>
-                    </li>
-
-                    <li class="card-meta-item">
-                      <div class="meta-box">
-                        <ion-icon name="people"></ion-icon>
-
-                        <p class="text">pax: 10</p>
-                      </div>
-                    </li>
-
-                    <li class="card-meta-item">
-                      <div class="meta-box">
-                        <ion-icon name="location"></ion-icon>
-
-                        <p class="text">Kenya</p>
-                      </div>
-                    </li>
-
-                  </ul>
-
-                </div>
-
-                <div class="card-price">
-
-                  <div class="wrapper">
-
-                    <p class="reviews">(40 reviews)</p>
-
-                    <div class="card-rating">
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                    </div>
-
-                  </div>
-
-                  <p class="price">
-                    $660
-                    <span>/ per person</span>
-                  </p>
-
-                  <button class="btn btn-secondary">Book Now</button>
-
-                </div>
-
-              </div>
-            </li>
-
-          </ul>
-
-          <button class="btn btn-primary">View All Packages</button>
-
-        </div>
-      </section>
 
 
 
@@ -598,54 +437,46 @@
       -->
 
       <section class="gallery" id="gallery">
-        <div class="container">
+    <div class="container">
+        <p class="section-subtitle">Photo Gallery</p>
+        <h2 class="h2 section-title">Photos from Our Travelers</h2>
+        <p class="section-text">
+            Explore stunning moments captured by our travelers. From breathtaking landscapes to unforgettable experiences, 
+            these images showcase the beauty of our safari adventures.
+        </p>
+        <ul class="gallery-list" id="gallery-list">
+            <!-- Images will be inserted here dynamically -->
+        </ul>
+    </div>
+</section>
 
-          <p class="section-subtitle">Photo Gallery</p>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    fetch("https://horchenafrica.pythonanywhere.com/gallery")
+        .then(response => response.json())
+        .then(data => {
+            const galleryList = document.getElementById("gallery-list");
+            galleryList.innerHTML = ""; // Clear existing content
 
-          <h2 class="h2 section-title">Photo's From Travellers</h2>
+            data.forEach(item => {
+                const listItem = document.createElement("li");
+                listItem.classList.add("gallery-item");
 
-          <p class="section-text">
-            Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum. Vestibulum cumque laudantium.
-            Sit ornare
-            mollitia tenetur, aptent.
-          </p>
+                const figure = document.createElement("figure");
+                figure.classList.add("gallery-image");
 
-          <ul class="gallery-list">
+                const img = document.createElement("img");
+                img.src = item.image;
+                img.alt = "Gallery image";
 
-            <li class="gallery-item">
-              <figure class="gallery-image">
-                <img src="./assets/images/gallery-1.jpg" alt="Gallery image">
-              </figure>
-            </li>
-
-            <li class="gallery-item">
-              <figure class="gallery-image">
-                <img src="./assets/images/gallery-2.jpg" alt="Gallery image">
-              </figure>
-            </li>
-
-            <li class="gallery-item">
-              <figure class="gallery-image">
-                <img src="./assets/images/gallery-3.jpg" alt="Gallery image">
-              </figure>
-            </li>
-
-            <li class="gallery-item">
-              <figure class="gallery-image">
-                <img src="./assets/images/gallery-4.jpg" alt="Gallery image">
-              </figure>
-            </li>
-
-            <li class="gallery-item">
-              <figure class="gallery-image">
-                <img src="./assets/images/gallery-5.jpg" alt="Gallery image">
-              </figure>
-            </li>
-
-          </ul>
-
-        </div>
-      </section>
+                figure.appendChild(img);
+                listItem.appendChild(figure);
+                galleryList.appendChild(listItem);
+            });
+        })
+        .catch(error => console.error("Error fetching gallery images:", error));
+});
+</script>
 
 
 
@@ -655,25 +486,127 @@
         - #CTA
       -->
 
-      <section class="cta" id="contact">
-        <div class="container">
-
-          <div class="cta-content">
-            <p class="section-subtitle">Call To Action</p>
-
-            <h2 class="h2 section-title">Ready For Unforgatable Travel. Remember Us!</h2>
-
-            <p class="section-text">
-              Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum. Vestibulum cumque
-              laudantium. Sit ornare
-              mollitia tenetur, aptent.
+    <section class="cta" id="contact">
+    <div class="container" style="text-align: center; padding: 40px; background: #f8f9fa; border-radius: 10px; max-width: 800px; margin: auto;">
+        <div class="cta-content">
+            <p class="section-subtitle" style="color: #ff7f50; font-size: 1.2rem;">Get in Touch</p>
+            <h2 class="h2 section-title" style="font-size: 2rem; color: #333;">Start Your Unforgettable Journey with Us</h2>
+            <p class="section-text" style="max-width: 600px; margin: 0 auto; color: #555;">
+                Have any questions or need assistance planning your perfect trip? Contact us today, and let’s make it happen!
             </p>
-          </div>
-
-          <button class="btn btn-secondary">Contact Us !</button>
-
         </div>
-      </section>
+
+        <!-- Contact Form -->
+        <form id="contact-form" style="max-width: 500px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+            <div class="input-group" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <input type="text" id="name" name="name" placeholder="Your Name" required style="flex: 1 1 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                <input type="email" id="email" name="email" placeholder="Your Email" required style="flex: 1 1 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <div class="input-group" style="margin-top: 10px;">
+                <input type="tel" id="phone" name="phone" placeholder="Your Phone" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <textarea id="message" name="message" rows="4" placeholder="Your Message" required style="width: 100%; padding: 10px; margin-top: 10px; border: 1px solid #ddd; border-radius: 5px;"></textarea>
+            <button type="submit" class="btn btn-secondary" style="margin-top: 10px; background: #ff7f50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                Send Message
+            </button>
+        </form>
+
+        <!-- Notification Area -->
+        <p id="notification" style="display: none; margin-top: 10px; padding: 10px; border-radius: 5px;"></p>
+
+        <!-- Social Media Links -->
+       <div class="social-links" id="social-links" style="margin-top: 20px; display: flex; justify-content: center; gap: 15px;">
+    <p style="font-size: 1.1rem; color: #444;">Follow us:</p>
+    <a id="instagram" target="_blank" style="text-decoration: none; color: #C13584; font-size: 24px;">
+        <i class="fab fa-instagram"></i>
+    </a>
+    <a id="whatsapp" target="_blank" style="text-decoration: none; color: #25D366; font-size: 24px;">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a id="facebook" target="_blank" style="text-decoration: none; color: #1877F2; font-size: 24px;">
+        <i class="fab fa-facebook"></i>
+    </a>
+    <a id="tiktok" target="_blank" style="text-decoration: none; color: black; font-size: 24px;">
+        <i class="fab fa-tiktok"></i>
+    </a>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("instagram").href = "https://www.instagram.com/yourprofile";
+    document.getElementById("whatsapp").href = "https://wa.me/yourphonenumber";
+    document.getElementById("facebook").href = "https://www.facebook.com/yourprofile";
+    document.getElementById("tiktok").href = "https://www.tiktok.com/@yourprofile";
+});
+</script>
+
+    </div>
+</section>
+
+<!-- FontAwesome Icons -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Fetch and update social media links from /api/social-media/
+    fetch("https://horchenafrica.pythonanywhere.com/social-media/")
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("instagram").href = data.instagram;
+            document.getElementById("whatsapp").href = data.whatsapp;
+            document.getElementById("facebook").href = data.facebook;
+            document.getElementById("tiktok").href = data.tiktok;
+        })
+        .catch(error => console.error("Error fetching social media links:", error));
+
+    // Handle contact form submission to /api/contact/
+    document.getElementById("contact-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const formData = {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            message: document.getElementById("message").value
+        };
+
+        fetch("https://horchenafrica.pythonanywhere.com/contact/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            const notification = document.getElementById("notification");
+            notification.innerText = "Your message has been sent!";
+            notification.style.display = "block";
+            notification.style.background = "#d4edda";
+            notification.style.color = "#155724";
+            notification.style.border = "1px solid #c3e6cb";
+            document.getElementById("contact-form").reset();
+
+            setTimeout(() => {
+                notification.style.display = "none";
+            }, 3000);
+        })
+        .catch(error => {
+            const notification = document.getElementById("notification");
+            notification.innerText = "Error sending message. Please try again.";
+            notification.style.display = "block";
+            notification.style.background = "#f8d7da";
+            notification.style.color = "#721c24";
+            notification.style.border = "1px solid #f5c6cb";
+
+            setTimeout(() => {
+                notification.style.display = "none";
+            }, 3000);
+        });
+    });
+});
+</script>
+
 
     </article>
   </main>
@@ -693,15 +626,24 @@
 
         <div class="footer-brand">
 
-          <a href="#" class="logo">
-            <img src="./assets/images/Logo-Photoroom.png" alt="Horchen logo">
-          </a>
+        <a id="logo-link" class="logo">
+    <img src="./assets/images/Logo-Photoroom.png" alt="Horchen logo">
+</a>
 
-          <p class="footer-text">
-            Urna ratione ante harum provident, eleifend, vulputate molestiae proin fringilla, praesentium magna conubia
-            at
-            perferendis, pretium, aenean aut ultrices.
-          </p>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("logo-link").addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent any default action
+        window.location.href = "/"; // Change to the homepage or another target URL
+    });
+});
+</script>
+
+
+      <p class="footer-text">
+  Explore the world with us! We bring you unforgettable travel experiences, curated destinations, and expert travel tips to make your journey seamless and exciting.  
+</p>
+
 
         </div>
 
@@ -776,9 +718,18 @@
     - #GO TO TOP
   -->
 
-  <a href="#top" class="go-top" data-go-top>
+ <a href="javascript:void(0);" class="go-top" data-go-top>
     <ion-icon name="chevron-up-outline"></ion-icon>
-  </a>
+</a>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector(".go-top").addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+});
+</script>
+
 
 
 
@@ -794,6 +745,8 @@
   -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
+
 
 </body>
 

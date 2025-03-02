@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destination Details</title>
+    <style>
+        /* Reset default styles */
+        body, h1, h2, h3, p, figure {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f8ff; /* Light blue background */
+            color: #333; /* Darker text for contrast */
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header styles */
+        .header {
+            background: linear-gradient(135deg, #0077b6, #00b4d8); /* Light blue gradient */
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Card styles */
+        .popular-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 40px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease-in-out;
+            border-left: 8px solid #0077b6; /* Colored left border */
+        }
+
+        .popular-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-img img {
+            width: 50%; /* Smaller image */
+            height: auto;
+            object-fit: cover;
+            display: block;
+            margin: 1rem auto;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .card-img img:hover {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-rating {
+            color: #ffcc00;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .card-subtitle {
+            font-weight: bold; /* Bold country text */
+            color: #0077b6; /* Light blue color */
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            color: #0077b6; /* Light blue title */
+            margin: 15px 0;
+            font-size: 2rem;
+            font-weight: 700;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .card-text {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.6;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Back Button */
+        .back-button {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: center;
+            background: #0077b6;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .back-button:hover {
+            background: #005f8a;
+            transform: scale(1.05);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .card-title {
+                font-size: 1.6rem;
+            }
+            .card-text {
+                font-size: 0.9rem;
+                text-align: left; /* Left-align text on small screens */
+            }
+            .card-img img {
+                width: 80%; /* Larger image on smaller screens */
+            }
+            .card-content {
+                text-align: left; /* Left-align content on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <h1 id="destination-title">Explore the World</h1>
+        </div>
+    </header>
+
+    <main>
+        <section class="popular" id="destination">
+            <div class="container">
+                <div class="popular-card">
+                    <figure class="card-img">
+                        <img id="destination-image" alt="Destination Image">
+                    </figure>
+                    <div class="card-content">
+                        <div class="card-rating">
+                            <span id="destination-rating">★★★★☆</span>
+                        </div>
+                        <p class="card-subtitle" id="destination-country">Country</p>
+                        <h3 class="card-title">
+                            <span id="destination-title">Description</span>
+                        </h3>
+                        <p class="card-text" id="destination-description">Description goes here...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <button class="back-button" onclick="smoothScrollBack()">Back to Home</button>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const slug = urlParams.get("slug");
+
+            if (!slug) {
+                document.body.innerHTML = "<h1>Error: Destination slug missing!</h1>";
+                return;
+            }
+
+            const apiUrl = `https://horchenafrica.pythonanywhere.com/destinations/${slug}/`;
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error("Failed to fetch destination");
+
+                const data = await response.json();
+
+                document.getElementById("destination-title").textContent = data.title;
+                document.getElementById("destination-description").textContent = data.description;
+                document.getElementById("destination-country").textContent = data.country;
+
+                const imageElement = document.getElementById("destination-image");
+                if (data.image) {
+                    imageElement.src = data.image;
+                    imageElement.alt = data.title;
+                } else {
+                    imageElement.remove();
+                }
+
+                document.getElementById("destination-rating").innerHTML = data.rating 
+                    ? "★".repeat(Math.round(data.rating)) + "☆".repeat(5 - Math.round(data.rating)) 
+                    : "";
+
+            } catch (error) {
+                console.error("Error loading destination:", error);
+                document.body.innerHTML = "<h1>Destination not found</h1>";
+            }
+        });
+
+        function smoothScrollBack() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 800);
+        }
+    </script>
+
+</body>
+</html>
