@@ -195,7 +195,7 @@
             </div>
         </section>
 
-        <button class="back-button" onclick="smoothScrollBack()">Back to Home</button>
+         <a href="/" class="back-button" style="font-family: 'Orbitron', sans-serif"> Back to Home</a>
     </main>
 
     <script>
@@ -238,12 +238,15 @@
             }
         });
 
-        function smoothScrollBack() {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-            setTimeout(() => {
-                window.location.href = "index.html";
-            }, 800);
-        }
+       function smoothScrollBack() {
+    const homeSection = document.getElementById("home") || document.body; // Target home section or default to top
+    homeSection.scrollIntoView({ behavior: "smooth" });
+
+    setTimeout(() => {
+        window.location.href = "index.html";
+    }, 1000); // Adjust timeout to match scroll speed
+}
+
     </script>
 
 </body>

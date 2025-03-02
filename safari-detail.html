@@ -53,7 +53,27 @@
                     <p class="price">
                         <span id="safari-price"></span> <span>/ per person</span>
                     </p>
-                    <button class="btn btn-secondary">Book Now</button>
+                     <a href="/" class="btn btn-primary" id="book-now">Book Now</a>
+
+<style>
+.back-button {
+    display: inline-block;
+    background-color: #007bff; /* Blue color */
+    color: white; /* White text */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px;
+    text-decoration: none; /* Remove underline */
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+</style>
+
                     <script>
                         document.addEventListener("DOMContentLoaded", function () {
     const bookNowButton = document.querySelector(".btn-secondary");
@@ -76,8 +96,8 @@
         </div>
 
         <!-- Back to Home Button -->
-        <button class="btn btn-primary" style="margin-top: 2rem; display: inline-block;" onclick="window.location.href='index.html'">
-    Back to Home
+        <a href="/" class="back-button" style="font-family: 'Orbitron', sans-serif"> Back to Home</a>
+   
 </button>
 
 
