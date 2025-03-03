@@ -97,7 +97,10 @@
         </div>
 
         <!-- Back to Home Button -->
-        <a href="/" class="back-button" style="font-family: 'Orbitron', sans-serif"> Back to Home</a>
+      <a href="/" class="back-button" style="font-family: 'Orbitron', sans-serif; margin-bottom: 20px; display: inline-block;">
+    Back to Home
+</a>
+
    
 </button>
 
@@ -132,17 +135,26 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.getElementById("safari-rating").innerHTML = "⭐".repeat(Math.round(safari.rating || 0));
 
         // Display itinerary from safari.itinerary
-        const itineraryList = document.getElementById("itinerary-list");
-        itineraryList.innerHTML = ""; // Clear previous data
-        if (safari.itinerary && safari.itinerary.length > 0) {
-            safari.itinerary.forEach(day => {
-                const listItem = document.createElement("li");
-                listItem.innerHTML = `<strong>Day ${day.day_number}:</strong> ${day.description}`;
-                itineraryList.appendChild(listItem);
-            });
-        } else {
-            itineraryList.innerHTML = "<p>No itinerary available.</p>";
+      const itineraryList = document.getElementById("itinerary-list");
+itineraryList.innerHTML = ""; // Clear previous data
+
+if (safari.itinerary && safari.itinerary.length > 0) {
+    safari.itinerary.forEach((day, index) => {
+        const listItem = document.createElement("li");
+        listItem.innerHTML = `<strong>Day ${day.day_number}:</strong> ${day.description}`;
+        itineraryList.appendChild(listItem);
+
+        // Add a yellow horizontal line after each day except the last one
+        if (index < safari.itinerary.length - 1) {
+            const hr = document.createElement("hr");
+            hr.style.border = "1px solid yellow";
+            itineraryList.appendChild(hr);
         }
+    });
+} else {
+    itineraryList.innerHTML = "<p>No itinerary available.</p>";
+}
+
 
     } catch (error) {
         console.error("Error fetching safari details:", error);
