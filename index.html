@@ -684,18 +684,62 @@ document.addEventListener("DOMContentLoaded", function () {
 
       </div>
     </div>
+    <div class="partnerships-section">
+  <h2 class="section-title">Our Trusted Partners</h2>
+  <div class="scrolling-images">
+    <a href="https://www.kws.go.ke/" target="_blank" class="partner-logo">
+      <img src="./assets/images/Kenya-Wildlife-Service-KWS-Logo01.png" alt="Kenya Wildlife Service">
+    </a>
+    <a href="https://www.safaribookings.com/" target="_blank" class="partner-logo">
+      <img src="./assets/images/safaribookings.png" alt="Safari Bookings">
+    </a>
+    <a href="https://magicalkenya.com/" target="_blank" class="partner-logo">
+      <img src="./assets/images/Magical-Kenya-Logo01.png" alt="Magical Kenya">
+    </a>
+    <a href="https://www.tripadvisor.com/" target="_blank" class="partner-logo">
+      <img src="./assets/images/Tripadvisor-Logo01.png" alt="TripAdvisor">
+    </a>
+    <a href="https://tra.go.ke/" target="_blank" class="partner-logo">
+      <img src="./assets/images/Tourism-Regulatory-Authority-TRA-Logo01.png" alt="Tourism Regulatory Authority">
+    </a>
+    <!-- Add more images as needed -->
+  </div>
+</div>
+<script>
+  const logos = document.querySelectorAll('.partner-logo');
 
-    <div class="footer-bottom">
-      <div class="container">
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = 'translateY(0)';
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
 
-        <p class="copyright">
-          &copy; 2025 . All rights reserved
-        </p>
+logos.forEach((logo) => {
+  observer.observe(logo);
+});
+</script>
 
-       
+  <div class="footer-bottom">
+  <div class="container">
+    <p class="copyright">
+      &copy; <span id="current-year">2025</span> All rights reserved.
+    </p>
+    <p class="credits">
+      Created by <strong>Lenox001</strong> | Powered by <strong>Elitech Solutions</strong>
+    </p>
+  </div>
+</div>
+<script>
+  // Get the current year
+  const currentYear = new Date().getFullYear();
 
-      </div>
-    </div>
+  // Update the year in the footer
+  document.getElementById('current-year').textContent = currentYear;
+</script>
 
   </footer>
 

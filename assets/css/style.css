@@ -1363,3 +1363,110 @@ address {
   .container { max-width: 1180px; }
 
 }
+/* General Styling */
+.partnerships-section {
+  padding: 60px 20px;
+  background: #f9f9f9;
+  text-align: center;
+  overflow: hidden;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 40px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.scrolling-images {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  opacity: 0;
+  animation: fadeInUp 1s ease-in-out forwards;
+  animation-delay: 0.5s;
+}
+
+.partner-logo {
+  display: inline-block;
+  margin: 10px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease-in-out forwards;
+}
+
+.partner-logo:nth-child(1) { animation-delay: 0.6s; }
+.partner-logo:nth-child(2) { animation-delay: 0.8s; }
+.partner-logo:nth-child(3) { animation-delay: 1s; }
+.partner-logo:nth-child(4) { animation-delay: 1.2s; }
+.partner-logo:nth-child(5) { animation-delay: 1.4s; }
+/* Add more delays for additional logos */
+
+.partner-logo img {
+  width: 120px;
+  height: auto;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.partner-logo:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.1);
+}
+
+/* Keyframes for Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Footer Bottom Styling */
+.footer-bottom {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 14px;
+  border-top: 1px solid #444;
+}
+
+.footer-bottom .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-bottom .copyright {
+  margin: 0;
+  font-weight: 400;
+  color: #ccc;
+}
+
+.footer-bottom .credits {
+  margin: 5px 0 0; /* Reduced margin for tighter spacing */
+  font-weight: 400;
+  color: #aaa;
+}
+
+.footer-bottom .credits strong {
+  color: #fff;
+  font-weight: 600;
+}
