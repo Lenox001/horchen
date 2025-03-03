@@ -16,8 +16,8 @@
         /* Global styles */
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f0f8ff; /* Light blue background */
-            color: #333; /* Darker text for contrast */
+            background-color: #f0f8ff;
+            color: #333;
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -30,7 +30,7 @@
 
         /* Header styles */
         .header {
-            background: linear-gradient(135deg, #0077b6, #00b4d8); /* Light blue gradient */
+            background: linear-gradient(135deg, #0077b6, #00b4d8);
             color: #fff;
             padding: 30px 0;
             text-align: center;
@@ -52,59 +52,58 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: fadeInUp 1s ease-in-out;
-            border-left: 8px solid #0077b6; /* Colored left border */
-        }
-
-        .popular-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-left: 8px solid #0077b6;
+            padding: 20px;
         }
 
         .card-img img {
-            width: 50%; /* Smaller image */
-            height: auto;
-            object-fit: cover;
-            display: block;
-            margin: 1rem auto;
-            border-radius: 15px;
-            transition: transform 0.3s ease;
-        }
-
-        .card-img img:hover {
-            transform: scale(1.05);
+            width: 100%;
+            max-height: 450px;
+            object-fit: contain; /* Prevents cropping */
+            border-radius: 10px;
         }
 
         .card-content {
             padding: 20px;
-            text-align: left;
-        }
-
-        .card-rating {
-            color: #ffcc00;
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-        }
-
-        .card-subtitle {
-            font-weight: bold; /* Bold country text */
-            color: #0077b6; /* Light blue color */
-            font-size: 1.2rem;
-            margin-bottom: 10px;
         }
 
         .card-title {
-            color: #0077b6; /* Light blue title */
+            color: #0077b6;
             margin: 15px 0;
             font-size: 2rem;
             font-weight: 700;
             animation: fadeIn 1.5s ease-in-out;
         }
 
+        .card-subtitle {
+            font-weight: bold; /* Country text is now bold */
+            color: #333;
+            font-size: 1.2rem;
+        }
+
         .card-text {
             color: #555;
             font-size: 1rem;
-            line-height: 1.6;
+            line-height: 1.8;
             animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Rating styles */
+        .rating {
+            font-size: 1.2rem;
+            color: gold;
+            margin-top: 10px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Images inside description */
+        .description-img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain; /* Ensures full image is visible */
+            border-radius: 10px;
+            margin: 20px 0;
+            display: block;
         }
 
         /* Back Button */
@@ -129,42 +128,15 @@
             background: #005f8a;
             transform: scale(1.05);
         }
+        .card-img img,
+.description-img {
+    width: 100%;
+    max-height: 450px;
+    object-fit: contain; /* Prevents cropping */
+    border-radius: 12px; /* Smooth corners */
+}
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            .card-title {
-                font-size: 1.6rem;
-            }
-            .card-text {
-                font-size: 0.9rem;
-                text-align: left; /* Left-align text on small screens */
-            }
-            .card-img img {
-                width: 80%; /* Larger image on smaller screens */
-            }
-            .card-content {
-                text-align: left; /* Left-align content on small screens */
-            }
-        }
     </style>
 </head>
 <body>
@@ -179,24 +151,36 @@
         <section class="popular" id="destination">
             <div class="container">
                 <div class="popular-card">
-                    <figure class="card-img">
-                        <img id="destination-image" alt="Destination Image">
+                    <figure class="card-img" id="top-image">
+                        <!-- First Image will be inserted dynamically -->
                     </figure>
                     <div class="card-content">
-                        <div class="card-rating">
-                            <span id="destination-rating">★★★★☆</span>
-                        </div>
                         <p class="card-subtitle" id="destination-country">Country</p>
                         <h3 class="card-title">
                             <span id="destination-title">Description</span>
                         </h3>
-                        <p class="card-text" id="destination-description">Description goes here...</p>
+                        <div class="rating" id="destination-rating">⭐️⭐️⭐️⭐️⭐️</div>
+                        <p class="card-text" id="destination-description">
+                            <!-- First half of the description -->
+                        </p>
+                        <figure id="middle-image-1">
+                            <!-- Second Image will be inserted here -->
+                        </figure>
+                        <p class="card-text" id="extra-description-1">
+                            <!-- Second part of the description -->
+                        </p>
+                        <figure id="middle-image-2">
+                            <!-- Third Image will be inserted here -->
+                        </figure>
+                        <p class="card-text" id="extra-description-2">
+                            <!-- Third part of the description -->
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
-         <a href="/" class="back-button" style="font-family: 'Orbitron', sans-serif"> Back to Home</a>
+        <a href="/" class="back-button" style="font-family: 'Orbitron', sans-serif"> Back to Home</a>
     </main>
 
     <script>
@@ -218,36 +202,48 @@
                 const data = await response.json();
 
                 document.getElementById("destination-title").textContent = data.title;
-                document.getElementById("destination-description").textContent = data.description;
                 document.getElementById("destination-country").textContent = data.country;
 
-                const imageElement = document.getElementById("destination-image");
-                if (data.image) {
-                    imageElement.src = data.image;
-                    imageElement.alt = data.title;
-                } else {
-                    imageElement.remove();
+                // Set rating
+                document.getElementById("destination-rating").textContent = "⭐️".repeat(Math.round(data.rating));
+
+                // Split description into three parts
+                const descriptionParts = data.description.split(". ");
+                const chunkSize = Math.ceil(descriptionParts.length / 3);
+                document.getElementById("destination-description").textContent = descriptionParts.slice(0, chunkSize).join(". ") + ".";
+                document.getElementById("extra-description-1").textContent = descriptionParts.slice(chunkSize, chunkSize * 2).join(". ") + ".";
+                document.getElementById("extra-description-2").textContent = descriptionParts.slice(chunkSize * 2).join(". ");
+
+                const images = data.images;
+
+                if (images.length > 0) {
+                    const topImg = document.createElement("img");
+                    topImg.src = images[0].image_url;
+                    topImg.alt = data.title;
+                    document.getElementById("top-image").appendChild(topImg);
                 }
 
-                document.getElementById("destination-rating").innerHTML = data.rating 
-                    ? "★".repeat(Math.round(data.rating)) + "☆".repeat(5 - Math.round(data.rating)) 
-                    : "";
+                if (images.length > 1) {
+                    const middleImg1 = document.createElement("img");
+                    middleImg1.src = images[1].image_url;
+                    middleImg1.alt = data.title;
+                    middleImg1.classList.add("description-img");
+                    document.getElementById("middle-image-1").appendChild(middleImg1);
+                }
+
+                if (images.length > 2) {
+                    const middleImg2 = document.createElement("img");
+                    middleImg2.src = images[2].image_url;
+                    middleImg2.alt = data.title;
+                    middleImg2.classList.add("description-img");
+                    document.getElementById("middle-image-2").appendChild(middleImg2);
+                }
 
             } catch (error) {
                 console.error("Error loading destination:", error);
                 document.body.innerHTML = "<h1>Destination not found</h1>";
             }
         });
-
-       function smoothScrollBack() {
-    const homeSection = document.getElementById("home") || document.body; // Target home section or default to top
-    homeSection.scrollIntoView({ behavior: "smooth" });
-
-    setTimeout(() => {
-        window.location.href = "index.html";
-    }, 1000); // Adjust timeout to match scroll speed
-}
-
     </script>
 
 </body>

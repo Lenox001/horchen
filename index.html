@@ -6,8 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Horchen Africa</title>
-  <base href="/">
-
+  
 
   <!-- 
     - favicon
@@ -288,50 +287,38 @@ document.getElementById("book-now").addEventListener("click", function() {
       destinationList.innerHTML = "";
 
       data.forEach(destination => {
-        const listItem = document.createElement("li");
-        listItem.innerHTML = `
-          <div class="popular-card">
-            <figure class="card-img">
-              <img src="${destination.image}" alt="${destination.title}" loading="lazy">
-            </figure>
-            <div class="card-content">
-              <div class="card-rating">
-                ${"★".repeat(destination.rating)}${"☆".repeat(5 - destination.rating)}
+        if (destination.images.length > 0) {  // Ensure at least one image exists
+          const listItem = document.createElement("li");
+          listItem.innerHTML = `
+            <div class="popular-card">
+              <figure class="card-img">
+                <img src="${destination.images[0].image_url}" alt="${destination.title}" loading="lazy">
+              </figure>
+              <div class="card-content">
+                <div class="card-rating">
+                  ${"★".repeat(destination.rating)}${"☆".repeat(5 - destination.rating)}
+                </div>
+                <p class="card-subtitle">
+                  ${destination.country}
+                </p>
+                <h3 class="h3 card-title">
+                  <a href="destination_details.html?slug=${destination.slug}">${destination.title}</a>
+                </h3>
+                <p class="card-text">
+                  ${destination.description.length > 50 
+                    ? destination.description.substring(0, 50) + "..." 
+                    : destination.description}
+                </p>
               </div>
-              <p class="card-subtitle">
-                ${destination.country}
-              </p>
-              <h3 class="h3 card-title">
-                <a href="destination_details.html?slug=${destination.slug}">${destination.title}</a>
-              </h3>
-              <p class="card-text">
-                ${destination.description.length > 50 
-                  ? destination.description.substring(0, 50) + "..." 
-                  : destination.description}
-              </p>
             </div>
-          </div>
-        `;
-        destinationList.appendChild(listItem);
+          `;
+          destinationList.appendChild(listItem);
+        }
       });
     })
     .catch(error => console.error("Error fetching destinations:", error));
 });
 
-</script>
-
-
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get("scroll") === "contact") {
-        const contactSection = document.getElementById("contact");
-        if (contactSection) {
-            contactSection.scrollIntoView({ behavior: "smooth" });
-        }
-    }
-});
 
 </script>
 
