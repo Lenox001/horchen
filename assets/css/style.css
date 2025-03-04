@@ -379,6 +379,7 @@ body.loaded #preloader {
   z-index: 3;
 }
 
+
 .navbar.active {
   right: 0;
   visibility: visible;
@@ -401,10 +402,13 @@ body.loaded #preloader {
 }
 
 .nav-close-btn ion-icon { --ionicon-stroke-width: 80px; }
+.navbar-list { 
+  border-top: 1px solid hsla(0, 0%, 0%, 0.1); 
+}
 
-.navbar-list { border-top: 1px solid hsla(0, 0%, 0%, 0.1); }
-
-.navbar-list li { border-bottom: 1px solid hsla(0, 0%, 0%, 0.1); }
+.navbar-list li { 
+  border-bottom: 1px solid hsla(0, 0%, 0%, 0.1); 
+}
 
 .navbar-link {
   padding: 15px 20px;
@@ -413,9 +417,19 @@ body.loaded #preloader {
   font-size: var(--fs-4);
   transition: var(--transition);
   text-transform: capitalize;
+  display: flex;
+  align-items: center;  /* Ensures icon and text align properly */
+  gap: 10px; /* Adds space between icon and text */
 }
 
-.navbar-link:is(:hover, :focus) { color: var(--bright-navy-blue); }
+.navbar-link i {
+  font-size: 1.2em; /* Adjust icon size */
+}
+
+.navbar-link:is(:hover, :focus) { 
+  color: var(--bright-navy-blue); 
+}
+
 
 .overlay {
   position: fixed;
