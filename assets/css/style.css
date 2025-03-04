@@ -429,6 +429,17 @@ body.loaded #preloader {
 .navbar-link:is(:hover, :focus) { 
   color: var(--bright-navy-blue); 
 }
+/* Hide icons by default (large screens) */
+.icon-only {
+  display: none;
+}
+
+/* Show icons only on small screens (phones) */
+@media (max-width: 480px) {
+  .icon-only {
+    display: inline-block;
+  }
+}
 
 
 .overlay {

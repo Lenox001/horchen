@@ -121,47 +121,49 @@
 
   <li>
     <a href="javascript:void(0);" class="navbar-link" data-target="home">
-      <i class="fas fa-home"></i> home
+      <i class="fas fa-home icon-only"></i> home
     </a>
   </li>
 
   <li>
     <a href="javascript:void(0);" class="navbar-link" data-target="about">
-      <i class="fas fa-info-circle"></i> about
+      <i class="fas fa-info-circle icon-only"></i> about
     </a>
   </li>
 
   <li>
     <a href="javascript:void(0);" class="navbar-link" data-target="destination">
-      <i class="fas fa-map-marker-alt"></i> destination
+      <i class="fas fa-map-marker-alt icon-only"></i> destination
     </a>
   </li>
 
   <li>
     <a href="javascript:void(0);" class="navbar-link" data-target="package">
-      <i class="fas fa-box-open"></i> packages
+      <i class="fas fa-box-open icon-only"></i> packages
     </a>
   </li>
 
   <li>
     <a href="javascript:void(0);" class="navbar-link" data-target="accommodation">
-      <i class="fas fa-hotel"></i> accommodation
+      <i class="fas fa-hotel icon-only"></i> accommodation
     </a>
   </li>
 
   <li>
     <a href="javascript:void(0);" class="navbar-link" data-target="gallery">
-      <i class="fas fa-image"></i> gallery
+      <i class="fas fa-image icon-only"></i> gallery
     </a>
   </li>
 
   <li>
     <a href="javascript:void(0);" class="navbar-link" data-target="contact">
-      <i class="fas fa-envelope"></i> contact 
+      <i class="fas fa-envelope icon-only"></i> contact 
     </a>
   </li>
 
 </ul>
+
+
 <script>
   document.querySelectorAll('.navbar-link').forEach(link => {
   link.addEventListener('click', function () {
@@ -486,7 +488,7 @@ document.getElementById("book-now").addEventListener("click", function() {
 </script>
 
 <style>
-  /* Accommodation Section */
+ /* Accommodation Section */
 .accommodation-section {
   padding: 50px 0;
   background-color: #f9f9f9;
@@ -505,13 +507,13 @@ document.getElementById("book-now").addEventListener("click", function() {
 }
 
 .accommodation-title {
-  font-size: 2rem;
+  font-size: 2.2rem; /* Slightly larger title */
   font-weight: bold;
   margin-bottom: 15px;
 }
 
 .accommodation-description {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #666;
   margin-bottom: 30px;
 }
@@ -529,10 +531,10 @@ document.getElementById("book-now").addEventListener("click", function() {
 
 /* Individual Accommodation Card */
 .accommodation-item {
-  flex: 1 1 320px;
-  max-width: 350px;
+  flex: 1 1 400px; /* Increased minimum width */
+  max-width: 420px; /* Increased max width */
   display: flex;
-  justify-content: center; /* Ensures equal margins on both sides */
+  justify-content: center;
 }
 
 /* Card Styling */
@@ -542,8 +544,8 @@ document.getElementById("book-now").addEventListener("click", function() {
   overflow: hidden;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
-  width: 90%; /* Controls overall card width */
-  max-width: 320px; /* Prevents it from becoming too wide */
+  width: 100%;
+  max-width: 400px;
 }
 
 .accommodation-card:hover {
@@ -552,9 +554,8 @@ document.getElementById("book-now").addEventListener("click", function() {
 
 /* Image Wrapper */
 .accommodation-image-wrapper {
-  width: 90%; /* Ensures images don't take full width */
-  margin: 0 auto; /* Centers the image inside the card */
-  height: 220px;
+  width: 100%;
+  height: 250px; /* Increased height */
   overflow: hidden;
   border-radius: 8px; /* Optional: Adds rounded corners */
 }
@@ -568,19 +569,19 @@ document.getElementById("book-now").addEventListener("click", function() {
 
 /* Card Content */
 .accommodation-content {
-  padding: 15px;
+  padding: 20px;
   text-align: center;
 }
 
 .accommodation-card-title {
-  font-size: 1.5rem;
-  margin-bottom: 5px;
+  font-size: 1.8rem; /* Bigger title */
+  margin-bottom: 8px;
 }
 
 .accommodation-location {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #666;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 /* Price & Button */
@@ -591,20 +592,21 @@ document.getElementById("book-now").addEventListener("click", function() {
 }
 
 .accommodation-price {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: bold;
   color: green;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .accommodation-book-btn {
   background-color: blue;
   color: #fff;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 24px; /* Slightly bigger button */
   border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s;
+  font-size: 1.1rem;
 }
 
 .accommodation-book-btn:hover {
@@ -614,7 +616,7 @@ document.getElementById("book-now").addEventListener("click", function() {
 /* Error Message */
 .accommodation-error {
   color: red;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   text-align: center;
   margin-top: 20px;
 }
@@ -627,12 +629,11 @@ document.getElementById("book-now").addEventListener("click", function() {
 
   .accommodation-card {
     width: 95%;
-    max-width: 280px;
+    max-width: 350px; /* Larger on mobile */
   }
 
   .accommodation-image-wrapper {
-    width: 95%; /* Ensures margins stay equal on small screens */
-    height: 180px;
+    height: 220px; /* Bigger images */
   }
 }
 
