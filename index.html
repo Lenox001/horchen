@@ -43,33 +43,51 @@
 
   <div class="overlay" data-overlay></div>
 
-  <div class="header-top">
-    <div class="container">
+ <div class="header-top">
+  <div class="container">
 
-      <!-- Additional Logo -->
-       
-     
-      <a href="tel:+254 722 233 065" class="helpline-box">
-
-        <div class="icon-box">
-          <ion-icon name="call-outline"></ion-icon>
-        </div>
-
-        <div class="wrapper">
-          <p class="helpline-title">For Further Inquiries :</p>
-          <p class="helpline-number">+254 722 233 065</p>
-        </div>
-
-      </a>
-
-    
-
-        <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
-          <ion-icon name="menu-outline"></ion-icon>
-        </button>
-      </div>
-
+    <!-- Logo (Redirects Using JavaScript) -->
+    <div class="header-logo" onclick="window.location.href='/'">
+      <img src="assets/images/Logo-Photoroom.png" alt="Logo">
     </div>
+
+    <a href="tel:+254 722 233 065" class="helpline-box">
+      <div class="icon-box">
+        <ion-icon name="call-outline"></ion-icon>
+      </div>
+      <div class="wrapper">
+        <p class="helpline-title">For Further Inquiries :</p>
+        <p class="helpline-number">+254 722 233 065</p>
+      </div>
+    </a>
+
+    <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+      <ion-icon name="menu-outline"></ion-icon>
+    </button>
+
+  </div>
+</div>
+<style>
+  /* Logo Styling */
+/* Logo Styling */
+.header-logo {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  height: 70px; /* Increased size */
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.header-logo img {
+  height: 100%;
+  width: auto;
+  max-width: 150px; /* Increase width if needed */
+}
+
+
+</style>
   </div>
 
   <div class="header-bottom">
