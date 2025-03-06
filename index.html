@@ -471,7 +471,7 @@ document.getElementById("book-now").addEventListener("click", function() {
 </section>
 
 <script>
- document.addEventListener("DOMContentLoaded", async function () {
+document.addEventListener("DOMContentLoaded", async function () {
   const accommodationList = document.querySelector(".accommodation-list");
 
   try {
@@ -479,24 +479,30 @@ document.getElementById("book-now").addEventListener("click", function() {
     const accommodations = await response.json();
 
     accommodationList.innerHTML = accommodations
-      .map(accommodation => `
-        <li class="accommodation-item">
-          <div class="accommodation-card">
-            <div class="accommodation-image-wrapper">
-              <img src="${accommodation.image || './assets/images/default.jpg'}" alt="${accommodation.title}" class="accommodation-image" loading="lazy">
-            </div>
-            <div class="accommodation-content">
-              <h3 class="accommodation-card-title">${accommodation.title}</h3>
-              <p class="accommodation-location">${accommodation.location}</p>
-              <p class="accommodation-description">${accommodation.description || "No description available."}</p>
-              <div class="accommodation-price-wrapper">
-                <p class="accommodation-price">$${accommodation.price} / night</p>
+      .map(accommodation => {
+        // Generate multiple images if available
+        const images = accommodation.images.map(img => `
+          <img src="${img.image}" alt="${accommodation.title}" class="accommodation-image">
+        `).join("");
+
+        return `
+          <li class="accommodation-item">
+            <div class="accommodation-card">
+              <div class="accommodation-image-wrapper">
+                ${images || `<img src="./assets/images/default.jpg" alt="Default Image" class="accommodation-image">`}
               </div>
-              ${accommodation.link ? `<a href="${accommodation.link}" class="accommodation-link" target="_blank">View More</a>` : ""}
+              <div class="accommodation-content">
+                <h3 class="accommodation-card-title">${accommodation.title}</h3>
+                <p class="accommodation-location">${accommodation.location}</p>
+                <p class="accommodation-description">${accommodation.description || "No description available."}</p>
+                <div class="accommodation-price-wrapper">
+                  <p class="accommodation-price">$${accommodation.price} / night</p>
+                </div>
+              </div>
             </div>
-          </div>
-        </li>
-      `)
+          </li>
+        `;
+      })
       .join("");
 
   } catch (error) {
@@ -505,9 +511,26 @@ document.getElementById("book-now").addEventListener("click", function() {
   }
 });
 
+
+
 </script>
 
 <style>
+  /* Image Wrapper */
+.accommodation-image-wrapper {
+  width: 100%;
+  height: 250px; /* Adjust height as needed */
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.accommodation-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
  /* Accommodation Section */
 .accommodation-section {
   padding: 50px 0;
