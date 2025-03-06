@@ -480,8 +480,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     accommodationList.innerHTML = accommodations
       .map(accommodation => {
-        console.log(`Processing: ${accommodation.title}`, accommodation.images); // Debugging
-
         // Generate multiple images properly
         const imagesHTML = accommodation.images.map(img => `
           <img src="${img.image}" alt="${accommodation.title}" class="accommodation-image">
@@ -510,6 +508,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     accommodationList.innerHTML = "<p class='accommodation-error'>Failed to load accommodations. Please try again later.</p>";
   }
 });
+
 
 
 
