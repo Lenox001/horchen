@@ -23,6 +23,16 @@ const navToggleEvent = function (elem) {
 
 navToggleEvent(navElemArr);
 navToggleEvent(navLinks);
+navLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    navbar.classList.remove("active");
+    overlay.classList.remove("active");
+
+    // Remove focus (fix lingering highlight/shadow)
+    setTimeout(() => document.activeElement.blur(), 50);
+  });
+});
+
 
 
 

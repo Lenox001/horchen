@@ -135,70 +135,81 @@
 
         </div>
 
-      <ul class="navbar-list">
+       <ul class="navbar-list">
 
-  <li>
-    <a href="javascript:void(0);" class="navbar-link" data-target="home">
-      <i class="fas fa-home icon-only"></i> home
-    </a>
-  </li>
+    <li>
+      <a href="javascript:void(0);" class="navbar-link" data-target="home" data-nav-link>
+        <i class="fas fa-home icon-only"></i> home
+      </a>
+    </li>
 
-  <li>
-    <a href="javascript:void(0);" class="navbar-link" data-target="about">
-      <i class="fas fa-info-circle icon-only"></i> about
-    </a>
-  </li>
+    <li>
+      <a href="javascript:void(0);" class="navbar-link" data-target="about" data-nav-link>
+        <i class="fas fa-info-circle icon-only"></i> about
+      </a>
+    </li>
 
-  <li>
-    <a href="javascript:void(0);" class="navbar-link" data-target="destination">
-      <i class="fas fa-map-marker-alt icon-only"></i> destination
-    </a>
-  </li>
+    <li>
+      <a href="javascript:void(0);" class="navbar-link" data-target="destination" data-nav-link>
+        <i class="fas fa-map-marker-alt icon-only"></i> destination
+      </a>
+    </li>
 
-  <li>
-    <a href="javascript:void(0);" class="navbar-link" data-target="package">
-      <i class="fas fa-box-open icon-only"></i> packages
-    </a>
-  </li>
+    <li>
+      <a href="javascript:void(0);" class="navbar-link" data-target="package" data-nav-link>
+        <i class="fas fa-box-open icon-only"></i> packages
+      </a>
+    </li>
 
-  <li>
-    <a href="javascript:void(0);" class="navbar-link" data-target="accommodation">
-      <i class="fas fa-hotel icon-only"></i> accommodation
-    </a>
-  </li>
+    <li>
+      <a href="javascript:void(0);" class="navbar-link" data-target="accommodation" data-nav-link>
+        <i class="fas fa-hotel icon-only"></i> accommodation
+      </a>
+    </li>
 
-  <li>
-    <a href="javascript:void(0);" class="navbar-link" data-target="gallery">
-      <i class="fas fa-image icon-only"></i> gallery
-    </a>
-  </li>
+    <li>
+      <a href="javascript:void(0);" class="navbar-link" data-target="gallery" data-nav-link>
+        <i class="fas fa-image icon-only"></i> gallery
+      </a>
+    </li>
 
-  <li>
-    <a href="javascript:void(0);" class="navbar-link" data-target="contact">
-      <i class="fas fa-envelope icon-only"></i> contact 
-    </a>
-  </li>
+    <li>
+      <a href="javascript:void(0);" class="navbar-link" data-target="contact" data-nav-link>
+        <i class="fas fa-envelope icon-only"></i> contact 
+      </a>
+    </li>
 
-</ul>
+  </ul>
 
 
 <script>
   document.querySelectorAll('.navbar-link').forEach(link => {
-  link.addEventListener('click', function () {
-    const targetId = this.getAttribute('data-target');
-    const targetSection = document.getElementById(targetId);
-    if (targetSection) {
-      window.scrollTo({
-        top: targetSection.offsetTop,
-        behavior: 'smooth'
-      });
-    }
-  });
-});
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
 
+      const targetId = this.getAttribute('data-target');
+      const targetSection = document.getElementById(targetId);
+
+      if (targetSection) {
+        window.scrollTo({
+          top: targetSection.offsetTop,
+          behavior: 'smooth'
+        });
+      }
+
+      navbar.classList.remove('active');
+
+      // Clear focus from any active element
+      setTimeout(() => {
+        document.activeElement.blur();
+      }, 100);
+    });
+  });
 </script>
 
+
       </nav>
+      
 
      <a class="btn btn-primary" id="book-now">Book Now</a>
 
@@ -245,10 +256,11 @@ document.getElementById("book-now").addEventListener("click", function() {
 
     <section class="hero" id="home">
   <div class="container">
-    <h2 class="h1 hero-title" id="hero-title">Loading...</h2>
-    <p class="hero-text" id="hero-text">Fetching content...</p>
+    <h2 class="h1 hero-title" id="hero-title" style="font-size: 4.25rem;">Loading...</h2>
+    <p class="hero-text" id="hero-text" style="font-size: 1.5rem;">Fetching content...</p>
   </div>
 </section>
+
 
 <script>
   async function fetchHomepageContent() {
