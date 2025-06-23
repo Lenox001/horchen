@@ -262,7 +262,6 @@ document.getElementById("book-now").addEventListener("click", function() {
   </div>
 </section>
 
-
 <script>
   async function fetchHomepageContent() {
       try {
@@ -271,9 +270,13 @@ document.getElementById("book-now").addEventListener("click", function() {
 
           if (data.length > 0) { 
               const homepage = data[0]; // Get the first entry
-
-              document.getElementById("hero-title").textContent = homepage.hero_title;
-              document.getElementById("hero-text").textContent = homepage.hero_text;
+              
+              // Apply typewriter effect to title
+              typewriterEffect(document.getElementById("hero-title"), homepage.hero_title, 50, () => {
+                  // After title finishes, start typewriter effect on text
+                  typewriterEffect(document.getElementById("hero-text"), homepage.hero_text, 30);
+              });
+              
           } else {
               document.getElementById("hero-title").textContent = "No Data Available";
               document.getElementById("hero-text").textContent = "";
@@ -283,6 +286,23 @@ document.getElementById("book-now").addEventListener("click", function() {
           document.getElementById("hero-title").textContent = "Error Loading Content";
           document.getElementById("hero-text").textContent = "";
       }
+  }
+
+  function typewriterEffect(element, text, speed, callback) {
+      let i = 0;
+      element.textContent = ""; // Clear the element first
+      
+      function type() {
+          if (i < text.length) {
+              element.textContent += text.charAt(i);
+              i++;
+              setTimeout(type, speed);
+          } else if (callback) {
+              callback();
+          }
+      }
+      
+      type();
   }
 
   fetchHomepageContent();
