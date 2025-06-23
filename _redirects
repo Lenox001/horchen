@@ -1,5 +1,9 @@
-https://www.horchenafricasafaris.co.ke/*  https://horchenafricasafaris.co.ke/:splat  301!
-http://horchenafricasafaris.co.ke/*       https://horchenafricasafaris.co.ke/:splat  301!
-http://www.horchenafricasafaris.co.ke/*   https://horchenafricasafaris.co.ke/:splat  301!
+# Redirect www to non-www
+www.horchenafricasafaris.co.ke/*  https://horchenafricasafaris.co.ke/:splat  301
 
+# Redirect http to https
+http://horchenafricasafaris.co.ke/*     https://horchenafricasafaris.co.ke/:splat  301
+http://www.horchenafricasafaris.co.ke/* https://horchenafricasafaris.co.ke/:splat  301
+
+# Optional: clean up index.html
 /index.html  /  200
