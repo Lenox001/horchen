@@ -982,6 +982,373 @@ document.addEventListener("DOMContentLoaded", function () {
   -->
 
   <footer class="footer">
+   <div class="legal-modal">
+  <button class="legal-trigger">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+      <path d="M12 16V12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    Terms & Conditions
+  </button>
+  
+  <div class="legal-overlay">
+    <div class="legal-content">
+      <div class="legal-header">
+        <h2>Horchen African Safaris</h2>
+        <p>Terms & Conditions</p>
+        <button class="legal-close">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="legal-body">
+        <div class="legal-intro">
+          <p>These Terms and Conditions apply to all bookings made with Horchen African Safaris, a tour and travel company based in Nairobi, Kenya. By booking with us, you agree to be bound by the terms outlined below.</p>
+        </div>
+        
+        <div class="legal-section">
+          <h3>1. Booking & Confirmation</h3>
+          <p>All bookings must be confirmed in writing via email or through our official booking form. A deposit of 30% of the total tour cost is required to secure a reservation. The balance must be paid at least 30 days before the tour start date.</p>
+        </div>
+        
+        <div class="legal-section">
+          <h3>2. Rates & Pricing</h3>
+          <p>All rates are quoted in Kenya Shillings (KES) or US Dollars (USD) and are based on per person sharing, unless otherwise specified. Prices are subject to change without notice due to fluctuations in exchange rates, changes in park fees, fuel costs, or government taxes. Single room supplements apply where requested.</p>
+        </div>
+        
+        <div class="legal-section">
+          <h3>3. Payments</h3>
+          <p>Payments can be made via bank transfer, mobile money (M-Pesa: 0722233065), or credit card (additional charges may apply). A booking is only confirmed once payment has been received and acknowledged in writing.</p>
+        </div>
+        
+        <div class="legal-section">
+          <h3>4. Cancellations & Refund Policy</h3>
+          <p>Cancellations must be submitted in writing. Charges apply as follows:</p>
+          <ul>
+            <li>More than 30 days before departure: 20% of total cost</li>
+            <li>15–29 days before departure: 50%</li>
+            <li>7–14 days before departure: 75%</li>
+            <li>Less than 7 days: 100% (no refund)</li>
+          </ul>
+          <p>No refunds are provided for unused services, late arrivals, or early departures.</p>
+        </div>
+        
+        <div class="legal-section">
+          <h3>5. Medical & Health Requirements</h3>
+          <p>Clients are responsible for their medical fitness to travel. Travel insurance with medical cover is strongly recommended. Certain vaccinations (e.g., yellow fever) may be required. Please notify us of any medical conditions or dietary restrictions in advance.</p>
+        </div>
+        
+        <div class="legal-section">
+          <h3>6. Travel Insurance</h3>
+          <p>Travel insurance is mandatory for all clients. It must cover medical expenses, cancellations, personal liability, and loss of luggage.</p>
+        </div>
+        
+        <div class="legal-section">
+          <h3>7. Liability Disclaimer</h3>
+          <p>Horchen African Safaris acts as an agent for hotels, transport providers, and other third-party services. We are not liable for any injury, loss, damage, or inconvenience caused by third-party service providers. Clients travel at their own risk.</p>
+        </div>
+        
+        <div class="legal-section">
+          <h3>8. Alterations by the Company</h3>
+          <p>We reserve the right to alter itineraries, accommodations, or transportation as necessary due to circumstances beyond our control. In case of force majeure (e.g., strikes, weather, political unrest), alternative arrangements will be made when possible.</p>
+        </div>
+        
+        <div class="legal-section">
+          <h3>9. Client Responsibilities</h3>
+          <p>Clients must have valid passports, visas, and travel documents. They must adhere to local laws and customs and ensure the safety of their belongings.</p>
+        </div>
+        
+        <div class="legal-section">
+          <h3>10. Children Policy</h3>
+          <p>Children under 12 may receive discounted rates depending on the tour or accommodation. They must be accompanied by an adult at all times.</p>
+        </div>
+        
+        <div class="legal-section">
+          <h3>11. Complaints & Disputes</h3>
+          <p>Any complaints must be reported immediately to the tour guide. If unresolved, they must be submitted in writing within 14 days after the tour.</p>
+        </div>
+        
+        <div class="legal-section">
+          <h3>12. Governing Law</h3>
+          <p>These terms are governed by the laws of the Republic of Kenya.</p>
+        </div>
+        
+        <div class="legal-section">
+          <h3>13. Special Offers</h3>
+          <p>Horchen African Safaris occasionally offers promotional packages such as:</p>
+          <ul>
+            <li>Early Bird Discounts for bookings made 90 days in advance</li>
+            <li>Group Discounts for 5 or more travelers</li>
+            <li>Honeymoon Safari Packages</li>
+          </ul>
+          <p>Offers are subject to availability and specific conditions.</p>
+        </div>
+      </div>
+      
+      <div class="legal-footer">
+        <button class="legal-accept">I Understand</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Legal Modal Styles */
+.legal-modal {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  z-index: 9999;
+}
+
+.legal-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #1a3a8f, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.legal-trigger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.legal-trigger svg {
+  width: 18px;
+  height: 18px;
+}
+
+.legal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: none;
+  z-index: 9998;
+  animation: fadeIn 0.3s ease;
+}
+
+.legal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 800px;
+  max-height: 80vh;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.legal-header {
+  padding: 20px;
+  background: linear-gradient(135deg, #1a3a8f, #2563eb);
+  color: white;
+  position: relative;
+}
+
+.legal-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.legal-header p {
+  margin: 5px 0 0;
+  opacity: 0.9;
+}
+
+.legal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.legal-body {
+  padding: 25px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.legal-intro {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.legal-section {
+  margin-bottom: 25px;
+}
+
+.legal-section h3 {
+  color: #1a3a8f;
+  font-size: 18px;
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 15px;
+}
+
+.legal-section h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  height: 15px;
+  width: 5px;
+  background: #2563eb;
+  border-radius: 3px;
+}
+
+.legal-section p {
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.legal-section ul {
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.legal-section li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.legal-footer {
+  padding: 15px 25px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  text-align: right;
+}
+
+.legal-accept {
+  padding: 10px 25px;
+  background: linear-gradient(135deg, #1a3a8f, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.legal-accept:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .legal-content {
+    width: 95%;
+    max-height: 85vh;
+  }
+  
+  .legal-trigger {
+    bottom: 15px;
+    left: 15px;
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+}
+</style>
+
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
+  const legalTrigger = document.querySelector('.legal-trigger');
+  const legalOverlay = document.querySelector('.legal-overlay');
+  const legalClose = document.querySelector('.legal-close');
+  const legalAccept = document.querySelector('.legal-accept');
+  const legalModal = document.querySelector('.legal-modal');
+  
+  // Open modal
+  legalTrigger.addEventListener('click', function(e) {
+    e.preventDefault();
+    legalOverlay.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  });
+  
+  // Close modal
+  function closeModal() {
+    legalOverlay.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+  
+  legalClose.addEventListener('click', closeModal);
+  legalAccept.addEventListener('click', closeModal);
+  
+  // Close when clicking outside content
+  legalOverlay.addEventListener('click', function(e) {
+    if (e.target === legalOverlay) {
+      closeModal();
+    }
+  });
+  
+  // Close with ESC key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && legalOverlay.style.display === 'block') {
+      closeModal();
+    }
+  });
+  
+  // Hide/show trigger button based on scroll position
+  let lastScrollPosition = 0;
+  const scrollThreshold = 100; // pixels from top/bottom to trigger hide
+  
+  window.addEventListener('scroll', function() {
+    const currentScrollPosition = window.scrollY || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = document.documentElement.clientHeight;
+    
+    // Check if near top (within threshold)
+    const nearTop = currentScrollPosition < scrollThreshold;
+    
+    // Check if near bottom (within threshold)
+    const nearBottom = currentScrollPosition + clientHeight > scrollHeight - scrollThreshold;
+    
+    if (nearTop || nearBottom) {
+      legalModal.style.opacity = '0';
+      legalModal.style.pointerEvents = 'none';
+      legalModal.style.transition = 'opacity 0.3s ease';
+    } else {
+      legalModal.style.opacity = '1';
+      legalModal.style.pointerEvents = 'auto';
+    }
+    
+    lastScrollPosition = currentScrollPosition;
+  });
+});
+</script>
 
     <div class="footer-top">
       <div class="container">
@@ -1028,7 +1395,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <li class="contact-item">
               <ion-icon name="mail-outline"></ion-icon>
 
-              <a href="mailto:info.Horchen.com" class="contact-link">info.com</a>
+              <a href="mailto:horchenafricasafaris@gmail.com" class="contact-link">horchenafricasafaris@gmail.com</a>
             </li>
 
             <li class="contact-item">
