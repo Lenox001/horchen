@@ -1,12 +1,9 @@
 # Redirect www to non-www
-www.horchenafricasafaris.co.ke/*  https://horchenafricasafaris.co.ke/:splat  301
+https://www.horchenafricasafaris.co.ke/*  https://horchenafricasafaris.co.ke/:splat  301
+http://www.horchenafricasafaris.co.ke/*  https://horchenafricasafaris.co.ke/:splat  301
 
 # Redirect http to https
 http://horchenafricasafaris.co.ke/*     https://horchenafricasafaris.co.ke/:splat  301
-http://www.horchenafricasafaris.co.ke/* https://horchenafricasafaris.co.ke/:splat  301
 
-# REMOVE this line completely (it keeps homepage alive)
-# /index.html  /  200
-
-# Force everything to your custom 404
-/*    /404.html    404
+# Force everything to show custom 404
+/*  /404.html 404
