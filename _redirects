@@ -7,3 +7,6 @@ http://www.horchenafricasafaris.co.ke/* https://horchenafricasafaris.co.ke/:spla
 
 # Optional: clean up index.html
 /index.html  /  200
+
+# Force all routes to custom 404
+/*    /404.html    200
